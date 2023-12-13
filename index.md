@@ -26,12 +26,12 @@ Contributors: (please add yourself)
 
 This document describes the _module for frequency, attestation and corpus information_ of the Lexicon Model for Ontologies (_lemon_) as a result of the work of the Ontology Lexica community group (OntoLex). The module is targeted at complementing dictionaries and other linguistic resources containing lexicographic data with a vocabulary to express
 
-*   corpus-derived statistics (frequency and cooccurrence information, collocations),
+*   corpus-derived statistics (frequency and cooccurrence information, collocations, other measurements),
 *   pointers from lexical resources to corpora and other collections of text (attestations),
 *   the annotation of corpora and other language resources with lexical information (lemmatization against a dictionary), and
 *   distributional semantics (collocation vectors, word embeddings, sense embeddings, concept embeddings).
 
-The module tackles use cases in corpus-based lexicography, corpus linguistics and natural language processing, and operates in combination with the _lemon_ core module, referred to as _OntoLex_, as well as with other _lemon_ modules.
+The module addresses use cases in corpus-based lexicography, corpus linguistics and natural language processing, and operates in combination with the _lemon_ core module, referred to as _OntoLex_, as well as with other _lemon_ modules.
 
 </section>
 
@@ -107,18 +107,18 @@ back to ([Table of Contents](#table-of-contents))
 
 back to ([Table of Contents](#table-of-contents))
 
-[OntoLex-Lemon](https://www.w3.org/2016/05/ontolex/) provides a [core](https://www.w3.org/2016/05/ontolex/#core) vocabulary to represent _linguistic information_ associated to ontology and vocabulary elements. The model follows the principle of _semantics by reference_ in the sense that the semantics of a [lexical entry](https://www.w3.org/2016/05/ontolex/#LexicalEntry) is expressed by reference to an individual, class or property defined in an ontology. The OntoLex module for Frequency, Attestations and Corpus-Based Information (OntoLex-FrAC) complements OntoLex-Lemon with the capability of including information drawn from or found in corpora.
+[OntoLex-Lemon](https://www.w3.org/2016/05/ontolex/) provides a [core](https://www.w3.org/2016/05/ontolex/#core) vocabulary to represent _linguistic information_ associated to ontology and vocabulary elements. The model follows the principle of _semantics by reference_; in this sense, the semantics of a [lexical entry](https://www.w3.org/2016/05/ontolex/#LexicalEntry) is expressed by reference to an individual, class or property defined in an ontology. The OntoLex module for Frequency, Attestations and Corpus-Based Information (OntoLex-FrAC) complements OntoLex-Lemon with the capability of including information drawn from or found in corpora.
 
 This builds on two primary motivations:
 
-- corpus-based lexicography: OntoLex-Lemon has been increasingly used to publish, exchange and create dictionaries and lexicographical data in a *machine-readable* way. This module is partially motivated by requirements of corpus-based lexicography (frequency, collocations, semantic similarity) and digital philology (linking lexical resources with attestations and corpus data) and complements the [OntoLex module for lexicography](https://www.w3.org/2019/09/lexicog/) in that regard.
+- corpus-based lexicography: OntoLex-Lemon has been increasingly used to publish, exchange and create dictionaries and lexicographical data in a *machine-readable* way. This module is partially motivated by requirements of corpus-based lexicography (frequency, collocations, semantic similarity) and digital philology (linking lexical resources with attestations and corpus data); furthermore, it complements the [OntoLex module for lexicography](https://www.w3.org/2019/09/lexicog/) in that regard.
 
-- natural language processing: With the rise of distributional semantics since the early 1990s, lexical semantics have been complemented by corpus-based co-occurrence statistics, collocation vectors (Schütze 1993), word embeddings (Collobert et al. 2012) and sense embeddings (Rothe and Schütze, 2017). With the proposed module and in addition to the requirements from corpus-based lexicography, OntoLex can serve as a community standard to encode, store and exchange numerical vector representations (embeddings) along with the lexical concepts, senses, lemmas, words or contexts (attestations) that they represent.
+- natural language processing: With the rise of distributional semantics since the early 1990s, lexical semantics have been complemented by corpus-based co-occurrence statistics, collocation vectors (Schütze 1993), word embeddings (Collobert _et al_. 2012) and sense embeddings (Rothe and Schütze, 2017). With the proposed module, in addition to the requirements from corpus-based lexicography, OntoLex can serve as a community standard to encode, store, and exchange numerical vector representations (embeddings) along with the lexical concepts, senses, lemmas, words or contexts (attestations) that they represent.
 
-The added value of using linked data technologies to represent such information is an increased level of interoperability and integration between different types of lexical resources, the textual data they pertain to, as well as distributional representations of words, lexical senses and lexical concepts. Creating a designated module within OntoLex is a suitable means for establishing a vocabulary on a broad consensus that takes into account all use cases identified above in an adequate fashion. The OntoLex community is the natural forum to accomplish this for several reasons:
+The added value of using linked data technologies to represent such information is an increased level of interoperability and integration between different types of lexical resources, the textual data they pertain to, as well as distributional representations of words, lexical senses and lexical concepts. Creating a designated module within OntoLex is a suitable means for establishing a vocabulary based on broad consensus that addresses all identified use cases adequately. The OntoLex community is the natural forum to accomplish this for several reasons:
 
 1.  The extended use of OntoLex-Lemon to support digital lexicography,
-2.  the improved application and applicabiltiy of OntoLex-Lemon in natural language processing,
+2.  the improved application and applicability of OntoLex-Lemon in natural language processing,
 3.  the coming together of the lexicography, AI and human language technology communities, resp. resources, and
 4.  the possibility of reusing already available mechanisms in OntoLex-Lemon, preventing researchers from "re-inventing the wheel",
 
@@ -136,7 +136,7 @@ The scope of the model is three-fold:
 
 1.  extending the _OntoLex-lexicog_ model with corpus information to support existing challenges in corpus-driven lexicography,
 2.  modelling _existing_ lexical and distributional-semantic resources (corpus-based dictionaries, collocation dictionaries, embeddings) as linked data, to allow their conjoint publication and inter-operation by Semantic Web standards, and
-3.  providing a conceptual / abstract model of relevant concepts in _distributional semantics_ that facilitates building linked data-based applications that consume and combine both lexical and distributional information.
+3.  providing a conceptual / abstract model of relevant concepts in _distributional semantics_ that facilitates building linked data-based applications that use and combine both lexical and distributional information.
 
 <div class="note">
 
@@ -180,7 +180,7 @@ Other models [TO REVIEW]:
 @prefix dbr: <http://dbpedia.org/resource/>.
 @prefix dbo: <http://dbpedia.org/ontology/>.
 @prefix void: <http://rdfs.org/ns/void#>.
-@prefix lexinfo: <http://www.lexinfo.net/ontology/2.0/lexinfo#>.
+@prefix lexinfo: <http://www.lexinfo.net/ontology/3.0/lexinfo#>.
 @prefix dct: <http://purl.org/dc/terms/>.
 @prefix provo: <http://www.w3.org/ns/prov#>.
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
@@ -280,7 +280,7 @@ The top-level concepts of OntoLex-FrAC are thus `frac:Observable` and `frac:Obse
 > ----------------------- ------------------------------------
 > ### Observable (Class)
 > **URI:** [http://www.w3.org/nl/lemon/frac#Observable](http://www.w3.org/nl/lemon/frac#Observable)
-> **Observable** is an abstract superclass for any element of a lexical resource that frequency, attestation or corpus-derived information can be expressed about. This includes, among others, `ontolex:LexicalEntry`, `ontolex:LexicalSense`, `ontolex:Form`, and `ontolex:LexicalConcept`. Elements that FrAC properties apply to  must be observable in a corpus or another linguistic data source.
+> **Observable** is an abstract superclass for any element of a lexical resource that frequency, attestation or corpus-derived information can be expressed about. This includes, among others, `ontolex:LexicalEntry`, `ontolex:LexicalSense`, `ontolex:Form`, and `ontolex:LexicalConcept`. Elements that FrAC properties apply to must be observable in a corpus or another linguistic data source.
 > ----------------------- ------------------------------------
 </div>
 
@@ -322,7 +322,7 @@ In particular, we consider all these elements as being countable, annotatable/at
 > ----------------------- ------------------------------------
 > ### Observation (Class)
 > **URI:** [http://www.w3.org/nl/lemon/frac#Observation](http://www.w3.org/nl/lemon/frac#Observation)
-> **Observation** is an abstract superclass for anything that can be observed in a corpus about an Observable. An observation MUST have at least one `rdf:value` to express its value, it SHOULD have exactly one `frac:observedIn` property that defines the data from which this information was drawn, and it SHOULD have a `dct:description` explaining the methodolgy and/or extraction method by which the observation was obtained.
+> **Observation** is an abstract superclass for anything that can be observed in a corpus about an Observable. An observation MUST have at least one `rdf:value` to express its value, it SHOULD have exactly one `frac:observedIn` property that defines the data from which this information was drawn, and it SHOULD have a `dct:description`, explaining the methodolgy and/or extraction method by which the observation was obtained.
 > rdfs:subclassOf 1 `frac:observedIn`
 > rdfs:subclassOf min 1 `dct:description`
 > rdfs:subClassOf 1 rdf:value
@@ -348,20 +348,21 @@ frac:Observation
     # it is supposed to express that there should be
     # a human-readable description, but we don't enforce it
     # in order not to break validation
+
     rdfs:subClassOf [
         a <http://www.w3.org/2002/07/owl#Restriction> ;
         <http://www.w3.org/2002/07/owl#minCardinality> "0"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger> ;
         <http://www.w3.org/2002/07/owl#onProperty> dct:description
     ] ;
-    vs:term_status "tbc" . 
+#    vs:term_status "tbc" . 
 ```
 
-Observations as understood here are **empirical** (quantitative) observations that are made against a corpus, a text, a document or another type of language data. Observations can be made in any  kind  of  (collection  or excerpt of)  linguistic  data  at  any scale,  structured  or  unstructured, regardless of its physical materialization (as an electronic corpus, as a series of printed books, as a bibliographical database or as metadata record for a particular corpus).
+Observations as understood here are **empirical** (quantitative) observations that are made about a corpus, a text, a document or another type of language data. Observations can be made in any kind  of  (collection  or excerpt of)  linguistic  data  at  any scale,  structured  or  unstructured, regardless of its physical materialization (as an electronic corpus, as a series of printed books, as a bibliographical database or as metadata record for a particular corpus).
 
 > ----------------------- ------------------------------------
 > ### observedIn (ObjectProperty)
 > For a `frac:Observation`,  the property **observedIn** defines the URI of the data source (or its metadata entry) that this particular observation was made in or derived from. This can be, for example, a corpus or a text represented by its access URL, a book represented by its bibliographical metadata, etc.
-> As these data sources can have different characteristics, users SHOULD specify their respective type using the [DCMI Type Vocabulary](https://www.dublincore.org/specifications/dublin-core/dcmi-terms/#section-7).
+> As these data sources can have different feautures, users SHOULD specify their respective type using the [DCMI Type Vocabulary](https://www.dublincore.org/specifications/dublin-core/dcmi-terms/#section-7).
 > **Domain:** frac:Observation
 > **Range:** anyURI
 >
@@ -391,7 +392,7 @@ For machine-readable corpora that are/can be characterized by their size, data p
 
 We provide three examples for FrAC data sources below:
 
-1. 2012 English news subcorpus of the Leipzig Corpora collection, primarily used for computational lexicography. For `frac:total`, see the frequency section. The data provider provides the total number of sentences, lemmas ("types") and words ("tokens"), as reflected by the units of the `frac:Frequency`. The use of additional language resource metadata, e.g., language or publication year, is highly recommended, but not formally required.
+1. 2012 English news subcorpus of the Leipzig Corpora collection, primarily used for computational lexicography. For `frac:total`, see the frequency section. The data provider gives the total number of sentences, lemmas ("types") and words ("tokens"), as reflected by the units of the `frac:Frequency`. The use of additional language resource metadata, e.g., language or publication year, is highly recommended, but not formally required.
 
         <http://corpora.uni-leipzig.de/en/res?corpusId=eng_news_2012> a dcmitype:Collection ;
             frac:total 
@@ -404,7 +405,7 @@ We provide three examples for FrAC data sources below:
                             from 2012. Leipzig Corpora Collection. Dataset. 
                             https://corpora.uni-leipzig.de?corpusId=eng_news_2012."""@en .
 
-    > Implementation note: dct:language Should be URI, not value
+   # > Implementation note: dct:language Should be URI, not value ***
 
     > Note that `frac:total` RDFS-entails that its object is a `frac:Frequency`. This information, included here for the sake of completeness, can thus be left implicit.
 
@@ -458,10 +459,10 @@ We provide three examples for FrAC data sources below:
 back to ([Table of Contents](#table-of-contents))
 
 
-Frequency information is a crucial component in human language technology. Corpus-based lexicography originates with Francis and Kucera (1958), and subsequently, the analysis of frequency distributions of word forms, lemmas and other linguistic elements has become a standard technique in lexicography and philology, and given rise to the field of corpus linguistics. At its core, this means that lexicographers use (corpus) frequency and distribution information while compiling lexical entries (also see the section on collocations and similarity below). As a qualitative assessment, frequency can be expressed with [lexinfo:frequency](http://www.lexinfo.net/ontology/2.0/lexinfo#frequency), "[t]he relative commonness with which a term occurs". However, this is an object property with possible values lexinfo:commonlyUsed, lexinfo:infrequentlyUsed, lexinfo:rarelyUsed, while absolute counts over a particular resource (corpus) require novel vocabulary elements.
+Frequency information is a crucial component in human language technology. Corpus-based lexicography originates with Francis and Kucera (1958), and subsequently, the analysis of frequency distributions of word forms, lemmas and other linguistic elements has become a standard technique in lexicography and philology, given rise to the field of corpus linguistics. At its core, this means that lexicographers use, in corpora, frequency and distribution information while compiling lexical entries (also see the section on collocations and similarity below). As a qualitative assessment, frequency can be expressed with [lexinfo:frequency](http://www.lexinfo.net/ontology/2.0/lexinfo#frequency), "[t]he relative commonness with which a term occurs". However, this is an object property with possible values lexinfo:commonlyUsed, lexinfo:infrequentlyUsed, lexinfo:rarelyUsed, while absolute counts over a particular resource (corpus) require novel vocabulary elements.
 
 For modelling, we focus on absolute frequencies, as relative frequencies can be derived if absolute frequencies and totals are known. Absolute frequencies are used in computational lexicography (e.g., the [Electronic Penn Sumerian Dictionary](http://oracc.museum.upenn.edu/epsd2/)), and they are an essential piece of information for NLP and corpus linguistics.
-In order to avoid confusion with lexinfo:Frequency (which provides lexicographic assessments such as commonly used, infrequently used, etc.), this is defined with reference to a particular dataset, a corpus.
+In order to avoid confusion with lexinfo:Frequency (which provides lexicographic assessments such as commonly used, infrequently used, etc.), this is defined with reference to a particular dataset (corpus).
 
 <div class="entity">
 
