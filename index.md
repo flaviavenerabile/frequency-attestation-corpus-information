@@ -541,7 +541,7 @@ The definition above only applies to absolute frequencies. For expressing relati
 >
 > ----------------------- ------------------------------------
 
-> Note: For `frac:total`, users should provide both the frequency and the segmentation/unit over which this frequency is obtailed. For an observable, then, relative frequencies (for any given unit *u*) can then be calculated from the object values of `frac:frequency/rdf:value`  and `frac:frequency/frac:observedIn/frac:total/rdf:value` if (and only if) the correspondung units match.
+> Note: For `frac:total`, users should provide both the frequency and the segmentation/unit over which this frequency is obtained. For an observable, then, relative frequencies (for any given unit *u*) can then be calculated from the object values of `frac:frequency/rdf:value`  and `frac:frequency/frac:observedIn/frac:total/rdf:value` if (and only if) the corresponding units match.
 
 
 ```
@@ -674,7 +674,7 @@ epsd:a_water_n frac:frequency [
 
 back to ([Table of Contents](#table-of-contents))
 
-Attestations constitute  a  special  form  of  citation  that  provide  evidence  for  the  existence  of  a  certain  lexical  phenomena; they can elucidate meaning or illustrate various  linguistic  features.
+Attestations constitute  a  special  form  of  citation  that  provide  evidence  for  the  existence  of  a  certain  lexical  phenomena; they can elucidate meaning or illustrate various linguistic features.
 
 In  scholarly  dictionaries,  attestations  are  a  representative selection  from  the  occurrences  of  a  headword  in  a  textual corpus.  These  citations  often  consist  of  a quotation  accompanied  by  a  reference  to  the  source.  The  quoted  text  usually contains  the  occurrence  of  the  headword.
 
@@ -736,6 +736,8 @@ In general, the object of a citation represents the successful act of citing an 
 
 However, note that FrAC does not formally define a general "Citation" class to define the range of `citation`, but only provides `Attestation` as one specific possibility. Beyond attestations, different vocabularies have been suggested for linking bibliographical information, and we advise users of FrAC to make a consistent choice among them, adequate for their respective needs and the conventions of their users community. `frac:citation` serves as an interface to these external vocabularies. If the [CITO vocabulary](https://sparontologies.github.io/cito/current/cito.html) is used in a particular resource, their FrAC Citations can be defined as the subclass of CITO citations having <tt>frac:Observable</tt> as citing entity and attestations would correspond to citations with the <tt>cito:hasCitationCharacterization</tt> value <tt>citesAsEvidence</tt>. Other relevant vocabularies include, for example, [BIBFRAME](https://www.loc.gov/bibframe/), [FRBR](https://www.ifla.org/node/881) and [FaBiO](https://sparontologies.github.io/fabio/current/fabio.html), but also, generic vocabularies such as [schema.org](https://schema.org/citation).
 
+***Note: other vocabularies: BIBO https://www.dublincore.org/specifications/bibo/; BIRO https://sparontologies.github.io/biro/current/biro.html;
+
 
 > --------
 > ### gloss (Property)
@@ -786,13 +788,13 @@ frac:locus
     a owl:ObjectProperty ;
     rdfs:domain frac:Attestation ;
     vs:term_status "stable" ;
-    rdfs:comment """Points from an Observation to the exact location in the source material on where it is to be found. This can be, for example, a page in a book, the string URI of a passage in a text, a canonical reference to a passage in piece of literatur, or any Web Annotation selector. We have confirmed name, function and necessity of this property.
+    rdfs:comment """Points from an Observation to the exact location in the source material on where it is to be found. This can be, for example, a page in a book, the string URI of a passage in a text, a canonical reference to a passage in piece of literature, or any Web Annotation selector. We have confirmed the name, function and necessity of this property.
     When the locus is provided, it is not necessary to also refer to the source material as a whole. The existence of such a reference is nevertheless implied."""@en .
 ```
 
 </div>
 
-> Note: In humanities practice, locations (`frac:locus` objects) can be provided at different levels of granularity, e.g., referring to a particular text span within a text, to a verse, paragraph or chapter within which the text can be found, to a complete work, or a collection of works. Data providers should generally use `frac:observedIn` unless the the specific semantics require the use of `frac:locus`. In particular, if the location is a complete work (e.g., `dct:Text`) or a corpus identifiable by a URI (i.e., a `dct:Collection`), data providers should use the `frac:observedIn` property. For references within a work or to a collection without explicitly defined boundaries (e.g., `Plato` to designate all of Plato's preserved works as well as any statement ascribed to him from an unpreserved work), data providers should use `frac:locus`.
+> Note: In humanities practice, locations (`frac:locus` objects) can be provided at different levels of granularity, e.g., referring to a particular text span within a text, to a verse, paragraph or chapter within which the text can be found, to a complete work, or a collection of works. Data providers should generally use `frac:observedIn` unless the specific semantics requires the use of `frac:locus`. In particular, if the location is a complete work (e.g., `dct:Text`) or a corpus identifiable by an URI (i.e., a `dct:Collection`), data providers should use the `frac:observedIn` property. For references within a work or to a collection without explicitly defined boundaries (e.g., `Plato` to designate all of Plato's preserved works as well as any statement ascribed to him from an unpreserved work), data providers should use `frac:locus`.
 
 > Implementation note: as the type of data source is now to indicated by `dct:DMCIType`, we can merge `frac:locus` and `frac:observedIn`, again.
 
@@ -889,10 +891,10 @@ Collocations are collections of `frac:Observables`, and formalized as <tt>rdfs:C
 By default, <tt>frac:Collocation</tt> is insensitive to word order. If a collocation is word order sensitive, it should be defined as `rdfs:subClassOf rdf:Seq`. Collocation analysis typically involves additional parameters such as the size of the context window considered. Such information can be provided in human-readable form in <tt>dct:description</tt>. 
 
 <div class="note">
-> Note that FrAC collocations can be used to represent collocations both in the lexicographic sense (as complex units of meaning) and in the quantative sense (as determined by collocation metrics over a particular corpus), but that the quantitative interpretation is the preferred one in the context of FrAC. To mark collocations in the lexicographic sense as such, they can be assigned a corresponding `lexinfo:termType`, e.g., by means of `lexinfo:idiom`, `lexinfo:phraseologicalUnit` or `lexinfo:setPhrase`. If explicit sense information is being provided, the recommended modelling is by means of `ontolex:MultiWordExpression` and the OntoLex-Decomp module rather than `frac:Collocation`. To provide collocation scores about a `ontolex:MultiWordExpression`, it can be linked via `rdfs:member` with a `frac:Collocation`.
+> Note that FrAC collocations can be used to represent collocations both in the lexicographic sense (as complex units of meaning) and in the quantitative sense (as determined by collocation metrics over a particular corpus), but that the quantitative interpretation is the preferred one in the context of FrAC. To mark collocations in the lexicographic sense as such, they can be assigned a corresponding `lexinfo:termType`, e.g., by means of `lexinfo:idiom`, `lexinfo:phraseologicalUnit` or `lexinfo:setPhrase`. If explicit sense information is being provided, the recommended modelling is by means of `ontolex:MultiWordExpression` and the OntoLex-Decomp module rather than `frac:Collocation`. To provide collocation scores about a `ontolex:MultiWordExpression`, it can be linked via `rdfs:member` with a `frac:Collocation`.
 </div>
     
-Collocations are `frac:Observable`s, i.e., they can be ascribed `frac:frequency`, `frac:attestation`, `frac:embedding`, they can be described in terms of their (embedding) similarity, and they can be nested inside larger collocations.
+Collocations are `frac:Observable`s, i.e., they can be attributed `frac:frequency`, `frac:attestation`, `frac:embedding`, they can be described in terms of their (embedding) similarity, and they can be nested inside larger collocations.
     
 Collocations can be described in terms of various collocation scores. If scores for multiple metrics are being provided, these should not use the generic `rdf:value` property, but a designated subproperty of `frac:cScore`:
 
@@ -901,7 +903,7 @@ Collocations can be described in terms of various collocation scores. If scores 
 > ---
 > ### cScore (property)
 > **URI:** [http://www.w3.org/nl/lemon/frac#Collocation](http://www.w3.org/nl/lemon/frac#cScore)
-> **Collocation score** is a subproperty of `rdf:value` that provides the value for one specific type of collocation score for a particular collocation in its respective corpus. Note that this property should not be used directly, but instead, its respective sub-properties for scores of a particular type.
+> **Collocation score** is a subproperty of `rdf:value` that provides the value for one specific type of collocation score for a particular collocation in its respective corpus. It is important to note that this property should not be used directly, but instead, its respective sub-properties for scores of a particular type.
 > **SubPropertyOf:** <tt>rdf:value</tt>
 > **domain:** <tt>frac:Collocation</tt>
 >
@@ -997,7 +999,9 @@ frac:head
 As an example, the relative frequency score is the number of occurrences of a collocation relative to the overall frequency of its head.
     
 > Note: The function of the property `frac:head` is restricted to indicate the directionality of asymmetric collocation scores. It must not be confused with the notion of "head" in certain fields of linguistics, e.g., dependency syntax. 
-> Note: `frac:head` should not be used to model the structure of collocation dictionaries, i.e., the selection of collocations to be displayed with a particular head word. For these functions, please resort to the *lexicog:` vocabulary. 
+> Note: `frac:head` should not be used to model the structure of collocation dictionaries, i.e., the selection of collocations to be displayed with a particular head word. For these functions, please resort to the *lexicog:` vocabulary.
+
+#example?
     
 The most elementary level of a collocation is an n-gram, as provided, for example, by [Google Books](http://storage.googleapis.com/books/ngrams/books/datasetsv2.html), which provide n-gram frequencies per publication year as tab-separated values. For 2008, the 2012 edition provides the following statistics for the bigram _kill_ + _switch_.
 
@@ -1137,7 +1141,7 @@ The second example illustrates more complex types of collocation are provided as
 
 <div class="note">
 
-> Again, it is recommended to define resource-specific subclasses of <tt>frac:Collocation</tt> with default values for <tt>dct:description</tt>, <tt>frac:obsevedIn</tt>, and (where applicable) <tt>lexinfo:termType</tt>.
+>  It is recommended to define resource-specific subclasses of <tt>frac:Collocation</tt> with default values for <tt>dct:description</tt>, <tt>frac:obsevedIn</tt>, and (where applicable) <tt>lexinfo:termType</tt>.
 
 </div>
 
@@ -1228,14 +1232,14 @@ frac:embedding
 </div>
 
 <div class="note">
-The use of the term "embedding" adopted here follows the terminology in mathematics: For the embedding of an object  _X_  in another object  _Y_, the embedding _f_ :  _X_  →  _Y_  (alternatively _f_ : _X_ ↪ _Y_) is defined as an  injective, structure-preserving map (morphism). (Rephrased from [https://en.wikipedia.org/wiki/Embedding](https://en.wikipedia.org/wiki/Embedding))  For "embedding" in the sense conventionally used in language technology, see the subclass frac:FixedSizeVector.</div>
+The use of the term "embedding", adopted here, follows the terminology in mathematics: For the embedding of an object  _X_  in another object  _Y_, the embedding _f_ :  _X_  →  _Y_  (alternatively _f_ : _X_ ↪ _Y_) is defined as an  injective, structure-preserving map (morphism). (Rephrased from [https://en.wikipedia.org/wiki/Embedding](https://en.wikipedia.org/wiki/Embedding))  For "embedding" in the sense conventionally used in language technology, see the subclass frac:FixedSizeVector.</div>
 
 <div class="note">
-FrAC does not define the type of literal provided in the rdf:value of an embedding. The following examples use JSON literals, this is, however, informative, not normative. Alternative encodings based on tool-specific string representations (e.g., whitespace-separated numbers or comma-separated values) are possible. For string literals or untyped literal values, it is recommended to provide a regular expression that defines how to parse it as part of the description of the Embedding. As an example, the following regular expression for parsing embedding values can be used to parse whitespace-separated numbers (example in Perl):
+FrAC does not define the type of literal provided in the rdf:value of an embedding. The following examples use JSON literals; however, it is important to note that this is informative rather than normative. Alternative encodings based on tool-specific string representations (e.g., whitespace-separated numbers or comma-separated values) are possible. For string literals or untyped literal values, it is recommended to provide a regular expression that defines how to parse it as part of the description of the Embedding. As an example, the following regular expression for parsing embedding values can be used to parse whitespace-separated numbers (example in Perl):
 
 `split(/[^0-9\.,\-]+/, $value)`
 
-This means that doubles should be provided in the conventional format, not using the exponent notation.
+This means that doubles should be provided in the conventional format, and not using the exponent notation.
 
 Also note that different subclasses of frac:Embedding may have different encoding strategies.
 </div>
@@ -1429,7 +1433,7 @@ Since 2018, static word and concept embeddings have been increasingly replaced b
 > ----
 > ### attestationEmbedding (ObjectProperty)
 > **URI:** [http://www.w3.org/nl/lemon/frac#embedding](http://www.w3.org/nl/lemon/frac#embedding)
-> The property **attestation embedding** is a relation that maps an attestation of a particular observable into a numerical feature space. The string representation of the attestation should represent the necessary context that the respective embedding is calculated from.
+> The property **attestation embedding** is a relation that maps an attestation of a particular observable into a numerical feature space. The string representation of the attestation should represent the necessary context from which the corresponding embedding is calculated.
 > **rdfs:domain** frac:Attestation
 > **rdfs:range** frac:Embedding
 >
@@ -1496,11 +1500,11 @@ frac:Similarity
     vs:term_status "stable" .
 ```
 
-<tt>frac:Similarity</tt> applies to two different use cases: The specific similarity between (exactly) two words, and similarity clusters (synonym groups obtained from clustering quantitatively obtained synonym candidates according to their distributional semantics in a particular corpus) that can contain an arbitrary number of words. Both differ in the semantics of <tt>rdf:value</tt>: Quantitatively obtained similarity _relations_ normally provide a different score for every pair of similes. Within a similarity _cluster_, a generalization over these pair-wise scores must be provided. This could be the minimal similarity between all cluster members or a score produced by the clustering algorithm (e.g., depth or size of cluster). This must be explained in <tt>dct:description</tt>.
+<tt>frac:Similarity</tt> applies to two different use cases: the specific similarity between (exactly) two words, and similarity clusters (synonym groups obtained from clustering quantitatively obtained synonym candidates according to their distributional semantics in a particular corpus) that can contain an arbitrary number of words. Both differ in the semantics of <tt>rdf:value</tt>: Quantitatively obtained similarity _relations_ normally provide a different score for every pair of similes. Within a similarity _cluster_, a generalization over these pair-wise scores must be provided. This could be the minimal similarity between all cluster members or a score produced by the clustering algorithm (e.g., depth or size of cluster). This must be explained in <tt>dct:description</tt>.
 
 <div class="note">
 
-> Similarity clusters are typical outcomes of [Word Sense Induction](https://www.cs.york.ac.uk/semeval2010_WSI/datasets.html) techniques or [unsupervised POS tagging](http://www.aclweb.org/anthology/D10-1056). Classical sample data are Brown clusters, e.g., [here](https://github.com/Derekkk/Brown-Word-Clustering-and-word-similarity/blob/master/results-brown.txt) or [here](https://s3-eu-west-1.amazonaws.com/downloads.gate.ac.uk/resources/derczynski-chester-boegh-brownpaths.tar.bz2).
+> Similarity clusters are common outcomes of [Word Sense Induction](https://www.cs.york.ac.uk/semeval2010_WSI/datasets.html) techniques or [unsupervised POS tagging](http://www.aclweb.org/anthology/D10-1056). Classical sample data are Brown clusters, e.g., [here](https://github.com/Derekkk/Brown-Word-Clustering-and-word-similarity/blob/master/results-brown.txt) or [here](https://s3-eu-west-1.amazonaws.com/downloads.gate.ac.uk/resources/derczynski-chester-boegh-brownpaths.tar.bz2).
 
 </div>
 
@@ -1517,7 +1521,7 @@ frac:Similarity
 
 <div class="note">
 
-> As with frequency and embeddings, a resource-specific similarity type can be defined, analoguously. In particular, this is required if directed (asymmetric) similarity assessments are to be provided.
+> As with frequency and embeddings, a resource-specific similarity type can be defined, analogously. In particular, this is required if directed (asymmetric) similarity assessments are to be provided.
 
 </div>
 
@@ -1534,7 +1538,7 @@ The Ontolex Module for Frequency, Attestation and Corpus Information does not sp
 
 </div>
 
-In Web Annotation terminology, the annotated element is the 'target', the content of the annotation is the `body', and the process and provenance of the annotation is expressed by properties of <tt>oa:Annotation</tt>.
+In Web Annotation terminology, the annotated element is the 'target', the content of the annotation is the `body', and provenance and the process of the annotation is expressed by properties of <tt>oa:Annotation</tt>.
 
 <div class="entity">
 
@@ -1668,7 +1672,7 @@ Usually, numerical information drawn from corpora is distributed and shared as c
 
 <div class="note">
 
-Ontolex-frac is compliant with CSV formats, but its handling of structured information has an impact on the CSV format. In particular, individual dimensions of embeddings must not use comma as separator in order to be mapped to a single literal. For the example embedding of _frak_ above, the first column (containing the word) should be comma-separated, the following columns (containing the embedding) should be white-space separated.
+OntoLex-FrAC is compliant with CSV formats, but its handling of structured information has an impact on the CSV format. In particular, individual dimensions of embeddings must not use comma as separator in order to be mapped to a single literal. For the example embedding of _frak_ above, the first column (containing the word) should be comma-separated, the following columns (containing the embedding) should be white-space separated.
 
 </div>
 
